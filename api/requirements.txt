@@ -1,0 +1,11 @@
+asgiref==3.2.10
+Django==2.2.2
+django-environ==0.4.5
+djangorestframework==3.12.1
+djangorestframework-simplejwt==4.4.0
+Pillow==7.2.0
+PyJWT==1.7.1
+pytz==2020.1
+six==1.15.0
+sorl-thumbnail==12.6.3
+sqlparse==0.3.1

@@ -1,0 +1,27 @@
+endpoint para el registro de usuarios listo.
+endpoind para el cambio de contraseña listo.
+endpoind para el reseteo de contraseña listo.
+endpoint para visuallizacion de usuario loguedo listo.
+
+
+
+# pendientes 
+1-crear los endpoints de los datos del usuarios, los datos de entrenador y los datos del deporte
+    . serializacion
+    . vistas
+    . filtros
+    . paginacion
+    . validacion de acceso via token
+
+2-configuracion para cambio de base de datos por postgresql
+    . instalacion 
+    . creacion de la base de datos
+    . migracion
+    . configuraciones basicas
+
+3-Crear variables de entorno
+    .variables email
+    .variables base de datos
+
+
+
