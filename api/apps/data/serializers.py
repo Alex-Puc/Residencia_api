@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Athlete, Coach, Training, Sport
+from .models import Athlete, Coach, Training, Sport, Exercise
 
 class AthleteSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField()
@@ -56,4 +56,16 @@ class TrainingSerializer(serializers.ModelSerializer):
             'updated_at'
         ]
 
+class ExerciseSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Exercise
+        fields = [
+            'name',
+            'descript',
+            'repetition',
+            'duration',
+            'created_at',
+            'updated_at'
+        ]
 

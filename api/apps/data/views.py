@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView,  DestroyAPIView
 
-from .serializers import AthleteSerializer, CoachSerializer, SportSerializer, TrainingSerializer
+from .serializers import AthleteSerializer, CoachSerializer, SportSerializer, TrainingSerializer, ExerciseSerializer
 
 from rest_framework import filters as df
 
-from .models import Athlete, Coach, Sport, Training
+from .models import Athlete, Coach, Sport, Training, Exercise
 from apps.acceso.models import User
 
 # Create your views here.
@@ -152,4 +152,39 @@ class TrainingUpdateView(UpdateAPIView):
 class TrainingDestroyView(DestroyAPIView):
     permission_classes = ()
     queryset = Training.objects.all()
+    lookup_field = 'id'
+
+
+#exercise
+class ExerciseListView(ListAPIView):
+    serializer_class = ExerciseSerializer
+    permission_classes = ()
+    queryset = Exercise.objects.all()
+    filter_backends = (df.OrderingFilter, df.SearchFilter, )
+    search_fields = ('name', )
+    ordering_fields = ('name',)
+
+#metodo POST
+class ExerciseCreateView(CreateAPIView):
+    serializer_class = ExerciseSerializer
+    permission_classes = ()
+
+#metodo get 'id'
+class ExerciseRetrieveView(RetrieveAPIView):
+    serializer_class = ExerciseSerializer
+    permission_classes = ()
+    queryset = Exercise.objects.all()
+    lookup_field = 'id'
+
+#metodo Put/Patch
+class ExerciseUpdateView(UpdateAPIView):
+    serializer_class = ExerciseSerializer
+    permission_classes = ()
+    queryset = Exercise.objects.all()
+    lookup_field = 'id'
+
+#metodo Delete
+class ExerciseDestroyView(DestroyAPIView):
+    permission_classes = ()
+    queryset = Exercise.objects.all()
     lookup_field = 'id'

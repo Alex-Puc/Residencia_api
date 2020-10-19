@@ -29,6 +29,12 @@ urlpatterns = [
     path('trainings/<int:id>/update/', views.TrainingUpdateView.as_view(), name='training_update'),
     path('trainings/<int:id>/delete/', views.TrainingDestroyView.as_view(), name='training_delete'),
 
+    path('exercises/', views.ExerciseListView.as_view(), name = 'exercise'),
+    path('exercises/create/', views.ExerciseCreateView.as_view(), name = 'exercise_create'),
+    path('exercises/<int:id>/', views.ExerciseRetrieveView.as_view(), name = 'exercise'),
+    path('exercises/<int:id>/update/', views.ExerciseUpdateView.as_view(), name='exercise_update'),
+    path('exercises/<int:id>/delete/', views.ExerciseDestroyView.as_view(), name='exercise_delete'),
+
 ]
 
 urlpatterns += router.urls
