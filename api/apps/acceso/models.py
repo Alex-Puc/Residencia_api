@@ -99,7 +99,7 @@ class User(AbstractUser):
         Typically this would be the user's first and last name. Since we do
         not store the user's real name, we return their username instead.
         """
-        return '{} {}'.format(self.first_name, self.last_name)
+        return '{}'.format(self.first_name, self.last_name)
 
     def key_expired(self):
         days = 1

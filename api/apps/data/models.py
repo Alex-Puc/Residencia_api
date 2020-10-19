@@ -1,20 +1,44 @@
 from django.db import models
 from apps.acceso.models import User
 
-# Create your models here.
+#modelo Dias
+class Day(models.Model):
+    name = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "{}".format(self.name)
+
+
+#modelo ejercicios
+class Exercise(models.Model):
+    name = models.CharField(max_length=100)
+    descript = models.TextField(max_length=500)
+    repetition = models.PositiveIntegerField()
+    duration =  models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "{} {} {} {}".format(self.name, self.descript, self.repetition, self.duration)
+
+    class Meta:
+        verbose_name = 'Ejercicio'
+        verbose_name_plural = 'Ejercicios'
 
 
 #modelo entrenamientos
 class Training(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
     descript = models.CharField(max_length=255, null=True, blank=True)
-    repetition = models.PositiveIntegerField()  
-    duration = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    exercise = models.ManyToManyField(Exercise)
+    day = models.ManyToManyField(Day)  
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return "{}".format(self.descript)
+        return "{}".format(self.name)
 
 
     class Meta:
@@ -25,7 +49,7 @@ class Training(models.Model):
 class Sport(models.Model):    
     name = models.CharField(max_length = 50)
     descript = models.CharField(max_length = 255, null=True, blank=True)
-    training = models.ForeignKey(Training, on_delete=models.CASCADE)
+    training = models.ManyToManyField(Training)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

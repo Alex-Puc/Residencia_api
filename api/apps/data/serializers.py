@@ -2,6 +2,8 @@ from rest_framework import serializers
 from .models import Athlete, Coach, Training, Sport
 
 class AthleteSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField()
+    sport = serializers.StringRelatedField()
 
     class Meta:
         model = Athlete
@@ -14,6 +16,8 @@ class AthleteSerializer(serializers.ModelSerializer):
         ]
 
 class CoachSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField()
+    sport = serializers.StringRelatedField()
 
     class Meta:
         model = Coach
@@ -25,6 +29,7 @@ class CoachSerializer(serializers.ModelSerializer):
         ]
 
 class SportSerializer(serializers.ModelSerializer):
+    training = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Sport
@@ -37,14 +42,16 @@ class SportSerializer(serializers.ModelSerializer):
         ]
 
 class TrainingSerializer(serializers.ModelSerializer):
+    exercise = serializers.StringRelatedField(many=True)
+    day = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Training
         fields = [
             'name',
             'descript',
-            'repetition',
-            'duration',
+            'exercise',
+            'day',
             'created_at',
             'updated_at'
         ]
